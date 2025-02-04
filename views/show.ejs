@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show all data</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <h4>Home</h4>
+        <div class="menu-toggle">☰</div>
+        <div class="menu">
+            <a href="/show">
+                <h4>All listings</h4>
+            </a>
+            <a href="/show/new">
+                <h4>Airbnb your Home</h4>
+            </a>
+        </div>
+    </div>
+
+    <div class="heading"><h1>Listings</h1></div>
+    <ul> 
+        <div class="listing">
+        <% for(let data of datas) { %>
+            <li class="listing-item">
+           <a href="/show/<%= data._id%>/view"><img src="<%= data.image.url %>" alt="<%= data.title %>"></a>
+            <h3><%= data.title %></h3>
+            <p>Price: $<%= data.price %></p>
+            <p>Location: <%= data.location %>, <%= data.country %></p>
+            </li>
+        <% }; %>
+    </div>
+    </ul>
+    <footer>
+        <div class="footer">
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="https://png.pngtree.com/element_our/sm/20180630/sm_5b37de3263964.jpg" alt="Instagram" width="30" height="30">
+            </a>
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="Facebook" width="30" height="30">
+            </a>
+            <a href="https://www.linkedin.com" target="_blank">
+                <img src="https://static.vecteezy.com/system/resources/previews/018/930/480/non_2x/linkedin-logo-linkedin-icon-transparent-free-png.png" alt="LinkedIn" width="30" height="30">
+            </a>
+        </div>
+    </footer>
+    <script type="module" src="/js/gsap.js"></script>
+</body>
+</html>
