@@ -38,6 +38,7 @@ gsap.timeline().from(".navbar h4", {
 gsap.from("h1", {
     y: 50, // Start from 50px below
     opacity: 0, // Start with 0 opacity
+    rotate:360,
     duration: 1, // Duration of the animation
     ease: "elastic.out(1, 0.3)",// Easing for a smooth effect
 });
@@ -85,4 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power2.out",
 
     });
+
+    gsap.from("button",{
+        opacity:0,
+        delay:1.5
+    })
   

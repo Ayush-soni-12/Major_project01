@@ -7,6 +7,7 @@ const path = require("path");
 const wrapAsync =require("./utils/wrapAsync.js")
 const ExpressError =require("./utils/ExpressError.js");
 const { wrap } = require("module");
+const { listingSchema } =require("./schema.js");
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use(express.urlencoded({ extended: true }));
@@ -48,10 +49,11 @@ app.get("/show/new",(req,res)=>{
 app.post("/show", wrapAsync (async (req,res,next)=>{
     
     let{title,description,image,price,country,location} =req.body;
-    console.log(req.body)
-    if(!req.body){
-     throw new ExpressError(400,"send valid data for listing")
-    }
+     let result= listingSchema.validate(req.body);
+     if(result.error){
+        throw new ExpressError(400, result.error);
+     }
+     console.log("hello");
     let newListing =new Listing({
         title:title,
         description:description,
@@ -117,13 +119,21 @@ const HandleValidationErr =(err)=>{
     err.message = "There was a cast error.please follow the rule";
     return err;
   }
+  const HandletypeError =(err)=>{
+    console.log("This was a type error");
+    err.message = "Please enter valid data";
+    return err;
+  }
   app.use((err,req,res,next)=>{
     console.log(err.name);
     if(err.name === "ValidationError") {
       err =HandleValidationErr(err);
     }
-    if(err.name ==="CastError"){
+   else if(err.name ==="CastError"){
         err=HandleCastError(err);
+    }
+    else if(err.name ==="TypeError"){
+        err=HandletypeError(err);
     }
     next(err);
   })

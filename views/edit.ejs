@@ -40,12 +40,12 @@
         <div class="invalid-feedback">Please fill the price</div>
         
         <label for="country">Country</label>
-        <input type="text" id="country" name="country" required value="<%= data.country %>">
+        <input type="text" pattern="[A-Za-z]+" id="country" name="country" required value="<%= data.country %>">
         <div class="invalid-feedback">Please fill the country</div>
     </div>
         
         <label for="location">Location</label>
-        <input type="text" id="location" name="location" required value="<%= data.location %>">
+        <input type="text" pattern="[A-Za-z]+" id="location" name="location" required value="<%= data.location %>">
         <div class="invalid-feedback">Please fill the Location</div>
         <button class="changes" type="submit">Make Changes</button>
        

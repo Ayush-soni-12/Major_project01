@@ -43,12 +43,12 @@
             <div class="invalid-feedback">Please enter the price</div>
             
             <label for="country">Country</label>
-            <input type="text" id="country" name="country" class="form-control" required>
+            <input type="text" pattern="[A-Za-z]+" id="country" name="country" class="form-control" required>
             <div class="invalid-feedback">Please enter the country</div>
         </div>
         
         <label for="location">Location</label>
-        <input type="text" id="location" name="location" class="form-control" required>
+        <input type="text" pattern="[A-Za-z]+" id="location" name="location" class="form-control" required>
         <div class="invalid-feedback">Please enter the location</div>
         
         <button type="submit" >Add New listing</button>
