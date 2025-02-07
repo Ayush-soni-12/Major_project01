@@ -8,6 +8,8 @@
     <title>Create new</title>
 </head>
 <body>
+     <div class="cursor"></div>
+     <div class="main">
     <div class="navbar">
         <h4>Home</h4>
         <div class="menu-toggle">☰</div>
@@ -21,6 +23,7 @@
         </div>
     </div>
     <form  class="needs-validation" action="/show/<%= data._id %>?_method=PUT" method="POST" novalidate>
+      
         <h1>Edit Your Listing</h1>
         
         <label for="title">Title</label>
@@ -48,8 +51,9 @@
         <input type="text" pattern="[A-Za-z]+" id="location" name="location" required value="<%= data.location %>">
         <div class="invalid-feedback">Please fill the Location</div>
         <button class="changes" type="submit">Make Changes</button>
-       
+    
     </form>
+</div>
     <footer>
         <div class="footer">
             <a href="https://www.instagram.com" target="_blank">
@@ -63,6 +67,7 @@
             </a>
         </div>
     </footer>
+
     <script type="module" src="/js/gsap.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/index.js"></script>

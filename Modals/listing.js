@@ -1,5 +1,6 @@
 const mongoose =require("mongoose");
-const listingSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+const listingSchema = new Schema({
     title:{
         type:String,
         required:true,
@@ -26,6 +27,12 @@ image: {
     country:{
         type:String,
     },
+    reviews:[
+        {
+            type:Schema.Types.ObjectId,
+             ref:"Review",
+        }
+    ]
 });
 
 const Listing = mongoose.model("Listing",listingSchema);

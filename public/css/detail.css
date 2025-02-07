@@ -4,8 +4,13 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
-form{
-    all:unset;
+#submit {
+  all:unset
+}
+h1 {
+    margin-bottom: 20px;
+    margin-top: 35px;
+    font-size: 3em;/* Default font size */
 }
 .menu a{
     text-decoration: none;
@@ -16,15 +21,17 @@ form{
     justify-content: space-between;
     align-items: center;
     padding: 1em;
-    background-color: #333;
+    background-color: red;
     color: white;
     box-shadow: 0px 0px 1px black;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 10;
 }
 .navbar h4 {
+    font-size: medium;
+    font-weight: bold;
     margin: 0 1rem;
     cursor: pointer;
 }
@@ -57,7 +64,59 @@ li img {
       height: auto;
     border-radius: 5px;
 }
+.edit:hover, .delete:hover {
+    opacity: 0.8 !important;
+}
+.Review {
+    background-color: #f9f9f9; /* Light background color */
+    padding: 20px; /* Padding around the content */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 20px 0; /* Margin to separate from other content */
+}
 
+.Review h1 {
+    font-size: 24px; /* Larger font size for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    color: #333; /* Darker color for the heading */
+}
+
+.Review label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 10px; /* Space below the labels */
+    font-weight: bold; /* Bold font for labels */
+    color: #555; /* Medium color for labels */
+}
+
+.Review input[type="range"] {
+    width: 100%; /* Full width for the range input */
+    margin-bottom: 20px; /* Space below the range input */
+}
+
+.Review textarea {
+    width: 100%; /* Full width for the textarea */
+    height: auto; /* Auto height */
+    padding: 10px; /* Padding inside the textarea */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below the textarea */
+    font-family: inherit; /* Inherit font from parent */
+    font-size: 16px; /* Font size */
+}
+
+.Review button {
+    background-color: red; /* Primary button color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+}
+
+.Review button:hover {
+    opacity: 0.5 !important;/* Darker color on hover */
+}
 footer {
     width: 100%;
     background-color: #f4f4f4;
@@ -76,6 +135,19 @@ footer {
     width: 30px;
     height: 30px;
 }
+
+.cursor {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position:fixed;
+    background-color:black;
+    z-index: 1000;
+    pointer-events: none;
+    text-align: center;
+    font-size: 5px;
+}   
+
 @media (max-width: 768px) {
     .footer {
         flex-direction: column;
@@ -126,6 +198,28 @@ footer {
     font-size: 16px;
 }
 
-.edit:hover, .delete:hover {
-    opacity: 0.8;
+.review-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.review-item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.review-item p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.review-item .rating {
+    font-weight: bold;
+    color: #007bff;
 }

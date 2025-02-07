@@ -2,11 +2,18 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* background-color: #f4f4f4; */
+    background-color: #f4f4f4; */
+}
+.main{
+    display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items: center; 
+ background-color: #f4f4f4;
 }
 .menu a{
     text-decoration: none;
@@ -60,6 +67,9 @@ input, textarea, select {
 #country {
     width: 50%;
 }
+li{
+    list-style: none;
+}
 button {
     width: 20%;
     padding: 10px;
@@ -78,13 +88,13 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     padding: 1em;
-    background-color: #333;
+    background-color: red;
     color: white;
     box-shadow: 0px 0px 1px black;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 10;
 }
 .navbar h4 {
     font-size: medium;
@@ -100,6 +110,23 @@ button:hover {
 .navbar .menu-toggle {
     display: none;
 }
+/* .main{
+    height: 100Vh;
+    width: 100vw;
+} */
+
+.cursor {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position:fixed;
+    background-color:black;
+    z-index: 1000;
+    pointer-events: none;
+    text-align: center;
+    font-size: 5px;
+}   
+
 @media (max-width: 768px) {
     .navbar .menu {
         display: none;

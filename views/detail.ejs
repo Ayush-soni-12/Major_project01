@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/detail.css">
     <title>Detail</title>
 </head>
 <body>
+    <div class="cursor"></div>
     <div class="navbar">
         <h4>Home</h4>
         <div class="menu-toggle">☰</div>
@@ -19,21 +21,51 @@
             </a>
         </div>
     </div>
-       <ul>   
-        <li>   
-             <h1><%=detail.title%></h1>
-             <img src="<%= detail.image.url %>" alt="<%= detail.title %>">
-             <h3><%=detail.description%></h3>
-            <p>Price: $<%= detail.price %></p>
+    <ul>
+        <li>
+            <h1><%= detail.title %></h1>
+            <img src="<%= detail.image.url %>" alt="<%= detail.title %>">
+            <h3 class="para"><%= detail.description %></h3>
+            <p>Price: &#8377;<%= detail.price.toLocaleString("en-IN") %></p>
             <p>Location: <%= detail.location %>, <%= detail.country %></p>
-            <a href="/show/<%=detail._id%>/edit">
-            <button  type="submit" class="edit">Edit</button>
-        </a>
-        <form action="/show/<%=detail._id %>?_method=DELETE" method="POST">
-            <button type="submit" class="delete">Delete</button>
-        </form>
-            </li>
+            <a href="/show/<%= detail._id %>/edit">
+                <button type="submit" class="edit">Edit</button>
+            </a>
+            <form id="submit" action="/show/<%= detail._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="delete">Delete</button>
+            </form>
+
+            <div class="Review">
+                <h1>Leave a Review</h1>
+                <form class="needs-validation" action="/show/<%= detail._id %>/reviews" method="post" novalidate>
+                    <div>
+                        <label for="rating">Rating:</label>
+                        <input type="range" id="rating" name="review[rating]" min="1" max="5" required>
+                        <div class="invalid-feedback">Please provide a rating.</div>
+                    </div>
+                    <div>
+                        <label for="comment">Comment:</label>
+                        <textarea name="review[comment]" id="comment" rows="15" cols="70" required></textarea>
+                        <div class="invalid-feedback">Please provide a comment.</div>
+                    </div>
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <h3>All Reviews</h3>
+            <ul class="review-list">
+                <% for (let review of detail.reviews) { %>
+                    <li class="review-item">
+                        <p><%= review.comment %></p>
+                        <p class="rating">Rating: <%= review.rating %></p>
+                    </li>
+                <% } %>
+            </ul>
+        </li>
     </ul>
+
     <footer>
         <div class="footer">
             <a href="https://www.instagram.com" target="_blank">
@@ -47,6 +79,9 @@
             </a>
         </div>
     </footer>
+
     <script type="module" src="/js/gsap.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>

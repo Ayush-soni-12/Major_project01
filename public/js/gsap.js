@@ -6,6 +6,32 @@ import { ScrollTrigger } from "https://cdn.skypack.dev/gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+ let listing = document.querySelector("li");
+
+ let cursor = document.querySelector(".cursor")
+ document.addEventListener("mousemove",(obj)=>{
+    gsap.to(cursor,{
+       x:obj.x,
+       y:obj.y,
+       ease: "power2.out",
+    })
+})
+// listing.addEventListener("mouseenter",(obj)=>{
+//     cursor.innerHTML ="View more"
+//     gsap.to(cursor,{
+//         scale:2,
+//         color:"#fff",
+//         opacity:0.9,
+
+//     })
+// })
+// listing.addEventListener("mouseleave",(obj)=>{
+//     gsap.to(cursor,{
+//         scale:1,
+        
+//     })
+// })
+
 // Animate the .Error element with a combination of effects
 gsap.from(".Error", {
     y: -50, // Start from 50px above
@@ -91,4 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         opacity:0,
         delay:1.5
     })
+
+
+    
   

@@ -1,69 +1,91 @@
-const express =require("express");
+const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./Modals/listing.js");
+const Review = require("./Modals/review.js");
 const methodOverride = require('method-override');
 const path = require("path");
-const wrapAsync =require("./utils/wrapAsync.js")
-const ExpressError =require("./utils/ExpressError.js");
+const wrapAsync = require("./utils/wrapAsync.js")
+const ExpressError = require("./utils/ExpressError.js");
 const { wrap } = require("module");
-const { listingSchema } =require("./schema.js");
+const { listingSchema } = require("./schema.js");
+const { reviewSchema } = require("./schema.js")
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.set("views",path.join(__dirname,"views"));
-app.set("view engine","ejs");
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 
 
-const Mongoose_Url ='mongodb://127.0.0.1:27017/wanderlust';
-async function main(){
-     await mongoose.connect(Mongoose_Url);   
+const Mongoose_Url = 'mongodb://127.0.0.1:27017/wanderlust';
+async function main() {
+    await mongoose.connect(Mongoose_Url);
 }
-main().then((res)=>{
-console.log(`connected to db `);
-}).catch((err)=>{
+main().then((res) => {
+    console.log(`connected to db `);
+}).catch((err) => {
     console.log(`server error ${err}`);
 })
- // ...........................Server is listening..........................
+// ...........................Server is listening..........................
 
-app.listen(8080,(req,res)=>{
+app.listen(8080, (req, res) => {
     console.log("server is started");
 });
 
+// ///////////////////////////////
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+};
+const validatelisting = (req, res, next) => {
+    const { error } = listingSchema.validate(req.body);
+    if (error) {
+        const errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else {
+        next();
+    }
+};
+
 // ...............................Index Route ....................................
 
-app.get("/show", wrapAsync(async (req,res)=>{
-     let datas = await Listing.find()
-     res.render("show.ejs",{datas});
+app.get("/show", wrapAsync(async (req, res) => {
+    let datas = await Listing.find()
+    res.render("show.ejs", { datas });
 })
 )
 
 // ..................................new route ....................................
 
-app.get("/show/new",(req,res)=>{
+app.get("/show/new", (req, res) => {
     res.render("new.ejs");
 })
 
-app.post("/show", wrapAsync (async (req,res,next)=>{
-    
-    let{title,description,image,price,country,location} =req.body;
-     let result= listingSchema.validate(req.body);
-     if(result.error){
-        throw new ExpressError(400, result.error);
-     }
-     console.log("hello");
-    let newListing =new Listing({
-        title:title,
-        description:description,
-        image,url:image,
-        price:price,
-        location:location,
-        country:country
+app.post("/show",  validatelisting, wrapAsync(async (req, res, next) => {
+
+    let { title, description, image, price, country, location } = req.body;
+    // let result = listingSchema.validate(req.body);
+    // if (result.error) {
+    //     throw new ExpressError(400, result.error);
+    // }
+    console.log("hello");
+    let newListing = new Listing({
+        title: title,
+        description: description,
+        image, url: image,
+        price: price,
+        location: location,
+        country: country
     });
-    
-     await newListing.save()
+
+    await newListing.save()
     res.redirect("/show")
 
 })
@@ -72,23 +94,23 @@ app.post("/show", wrapAsync (async (req,res,next)=>{
 
 // ............................... Detail route ..........................
 
-app.get("/show/:id/view", wrapAsync (async (req, res) => {
-            let { id } = req.params;
-        let detail = await Listing.findById(id);
-        res.render("detail.ejs",{detail});
-}) 
+app.get("/show/:id/view", wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    let detail = await Listing.findById(id).populate("reviews");
+    res.render("detail.ejs", { detail });
+})
 );
 // ..................................Edit route ............................
 // ...existing code...
-app.get("/show/:id/edit", wrapAsync(async(req,res)=>{
-           let { id } = req.params;
-           let data = await Listing.findById(id);
-            res.render("edit.ejs",{data});
+app.get("/show/:id/edit", wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    let data = await Listing.findById(id);
+    res.render("edit.ejs", { data });
 })
 );
 // ...existing code...
 
-app.put("/show/:id",wrapAsync(async (req, res) => {
+app.put("/show/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     let { title, description, image, price, country, location } = req.body;
     // console.log(req.body);
@@ -103,44 +125,56 @@ app.put("/show/:id",wrapAsync(async (req, res) => {
 );
 
 // ................. Delete route ...............................
-app.delete("/show/:id", wrapAsync(async (req,res)=>{
-    let {id}=req.params;
+app.delete("/show/:id", wrapAsync(async (req, res) => {
+    let { id } = req.params;
     let deleteDetail = await Listing.findByIdAndDelete(id);
     res.redirect("/show");
 })
 );
-const HandleValidationErr =(err)=>{
+// ................. Reviews ..............................
+
+app.post("/show/:id/reviews", validateReview, wrapAsync(async (req, res) => {
+    let{ id } = req.params;
+    let listing = await Listing.findById(id);
+    let newReview = new Review(req.body.review);
+    listing.reviews.push(newReview);
+    await newReview.save();
+    await listing.save();
+    res.redirect(`/show/${id}/view`);
+}));
+
+const HandleValidationErr = (err) => {
     console.log("This was a validation error . please follow rules");
     err.message = "there is validation rule .please follow the rule";
     return err;
-  }
-  const HandleCastError =(err)=>{
+}
+const HandleCastError = (err) => {
     console.log("This was a cast error ")
     err.message = "There was a cast error.please follow the rule";
     return err;
-  }
-  const HandletypeError =(err)=>{
+}
+const HandletypeError = (err) => {
     console.log("This was a type error");
     err.message = "Please enter valid data";
     return err;
-  }
-  app.use((err,req,res,next)=>{
+}
+app.use((err, req, res, next) => {
     console.log(err.name);
-    if(err.name === "ValidationError") {
-      err =HandleValidationErr(err);
+    if (err.name === "ValidationError") {
+        err = HandleValidationErr(err);
     }
-   else if(err.name ==="CastError"){
-        err=HandleCastError(err);
+    else if (err.name === "CastError") {
+        err = HandleCastError(err);
     }
-    else if(err.name ==="TypeError"){
-        err=HandletypeError(err);
+    else if (err.name === "TypeError") {
+        err = HandletypeError(err);
     }
     next(err);
-  })
-app.all("*",(req,res,next)=>{
-    next(new ExpressError(404,"Page not found"));
 })
-app.use((err,req,res,next)=>{
-    let {statusCode=500 ,message="something went wrong"} =err;
-     res.render("error.ejs",{err});
+app.all("*", (req, res, next) => {
+    next(new ExpressError(404, "Page not found"));
+})
+app.use((err, req, res, next) => {
+    let { statusCode = 500, message = "something went wrong" } = err;
+    res.render("error.ejs", { err });
 })
