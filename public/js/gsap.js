@@ -118,6 +118,17 @@ document.addEventListener("DOMContentLoaded", () => {
         delay:1.5
     })
 
-
+    gsap.from(".swiper-slide", {
+        scrollTrigger: {
+            trigger: ".swiper-slide",
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+        },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.3,
+    });
     
   

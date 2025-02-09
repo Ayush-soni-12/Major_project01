@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show all data</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
     <div class="cursor"></div>
-   
     <div class="navbar">
         <h4>Home</h4>
         <div class="menu-toggle">☰</div>
@@ -21,20 +21,23 @@
             </a>
         </div>
     </div>
-
-    <div class="heading"><h1>Listings</h1></div>
-    <ul> 
-        <div class="listing">
-        <% for(let data of datas) { %>
-            <li class="listing-item">
-           <a href="/show/<%= data._id%>/view"><img src="<%= data.image.url %>" alt="<%= data.title %>"></a>
-            <h3><%= data.title %></h3>
-            <p>Price: $<%= data.price %></p>
-            <p>Location: <%= data.location %>, <%= data.country %></p>
-            </li>
-        <% }; %>
+    <h1 class="listing">Listings</h1>
+    <div class="swiper-container">
+        <div class=" wrapper swiper-wrapper">
+            <% for(let data of datas) { %>
+                <div class="swiper-slide">
+                    <a href="/show/<%= data._id%>/view"><img src="<%= data.image.url %>" alt="<%= data.title %>"></a>
+                    <h3><%= data.title %></h3>
+                    <p>Price: $<%= data.price %></p>
+                    <p>Location: <%= data.location %>, <%= data.country %></p>
+                </div>
+            <% }; %>
+        </div>
+        <!-- Add Pagination -->
+       
+      
     </div>
-    </ul>
+
     <footer>
         <div class="footer">
             <a href="https://www.instagram.com" target="_blank">
@@ -48,6 +51,41 @@
             </a>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="module" src="/js/gsap.js"></script>
+    <script type="module" src="/js/gsap1.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+            },
+        });
+
+        // GSAP animations
+    
+    </script>
 </body>
 </html>

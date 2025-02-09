@@ -143,6 +143,15 @@ app.post("/show/:id/reviews", validateReview, wrapAsync(async (req, res) => {
     res.redirect(`/show/${id}/view`);
 }));
 
+// ..............................delete review route ...............................
+
+app.delete("/shows/:id/reviews/:reviewId", wrapAsync(async(req,res)=>{
+     let {id ,reviewId} =req.params;
+      await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}})
+      await Review.findByIdAndDelete(reviewId);
+      res.redirect(`/show/${id}/view`);
+}))
+
 const HandleValidationErr = (err) => {
     console.log("This was a validation error . please follow rules");
     err.message = "there is validation rule .please follow the rule";
