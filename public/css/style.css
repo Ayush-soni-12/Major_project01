@@ -102,10 +102,10 @@ margin-top: 100px;
     margin-bottom: 5px;
 }
 
-.wrapper{
+/* .wrapper{
     height: 400px;
-}
-footer {
+} */
+/* footer {
     width: 100%;
     background-color: #f4f4f4;
     border-top: 1px solid #ddd;
@@ -123,7 +123,7 @@ footer {
 .footer img {
     width: 30px;
     height: 30px;
-}
+} */
 .main{
     display: flex;
  flex-wrap: wrap;
@@ -149,7 +149,39 @@ label {
     display: block;
     margin-bottom: 5px;
 }
-input, textarea, select {
+/* form{
+    background-color: black;
+} */
+
+form{
+    border: none;
+    border-radius: 15px;
+    box-shadow: 6px 6px 12px #ffffff,
+    -6px -6px 12px #c5c5c5;
+    font-weight: bold;
+}
+
+form:focus {
+    outline-color: white;
+    place-content: "Enter your message!";
+   }
+.input {
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #e8e8e8;
+    box-shadow: 6px 6px 12px #ffffff,
+                -6px -6px 12px #c5c5c5;
+    font-size: medium;
+    font-weight: bold;
+    /* max-width: 200px; */
+   }
+   
+   .input:focus {
+    outline-color: white;
+    place-content: "Enter your message!";
+   }
+  textarea {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -157,6 +189,7 @@ input, textarea, select {
     border-radius: 4px;
 }
 .set {
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -168,7 +201,7 @@ input, textarea, select {
 #country {
     width: 50%;
 }
- button{
+ /* button{
     width: 20%;
     padding: 10px;
     background: red;
@@ -180,7 +213,7 @@ input, textarea, select {
 }
 button :hover {
     background: rgb(217, 45, 45);
-}
+} */
 
 
 .Error{
@@ -217,7 +250,7 @@ button :hover {
 
 @media (max-width: 480px) {
     .heading {
-         font-size: 3em; /* Adjust font size for mobile devices */
+         font-size: 2em; /* Adjust font size for mobile devices */
          margin-top: 40px;
     }
 }
@@ -249,3 +282,244 @@ button :hover {
  
     
 }
+/*  copy code */
+/* form{
+    height: auto;
+} */
+
+.wrapper {
+    display: flex;
+    list-style: none;
+    height: 100px;
+    width: 100vw;
+    /* padding-top: 40px; */
+    bottom: -30px;
+    font-family: "Poppins", sans-serif;
+    justify-content: center;
+    /* position: fixed; */
+  }
+  
+  .wrapper .icon {
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    margin: 10px;
+    /* bottom: -10px; */
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #fff;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #fff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .wrapper .icon:hover span,
+  .wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wrapper .facebook:hover,
+  .wrapper .facebook:hover .tooltip,
+  .wrapper .facebook:hover .tooltip::before {
+    background: #1877f2;
+    color: #fff;
+  }
+  
+  .wrapper .twitter:hover,
+  .wrapper .twitter:hover .tooltip,
+  .wrapper .twitter:hover .tooltip::before {
+    background: #1da1f2;
+    color: #fff;
+  }
+  
+  .wrapper .instagram:hover,
+  .wrapper .instagram:hover .tooltip,
+  .wrapper .instagram:hover .tooltip::before {
+    background: #e4405f;
+    color: #fff;
+  }
+  
+
+
+  .btn-17,
+.btn-17 *,
+.btn-17 :after,
+.btn-17 :before,
+.btn-17:after,
+.btn-17:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-17 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.btn-17:disabled {
+  cursor: default;
+}
+
+.btn-17:-moz-focusring {
+  outline: auto;
+}
+
+.btn-17 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-17 [hidden] {
+  display: none;
+}
+
+.btn-17 {
+  border-radius: 99rem;
+  border-width: 2px;
+  padding: 0.8rem 3rem;
+  z-index: 0;
+}
+
+.btn-17,
+.btn-17 .text-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-17 .text-container {
+  display: block;
+  mix-blend-mode: difference;
+}
+
+.btn-17 .text {
+  display: block;
+  position: relative;
+}
+
+.btn-17:hover .text {
+  -webkit-animation: move-up-alternate 0.3s forwards;
+  animation: move-up-alternate 0.3s forwards;
+}
+
+@-webkit-keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.btn-17:after,
+.btn-17:before {
+  --skew: 0.2;
+  background: #fff;
+  content: "";
+  display: block;
+  height: 102%;
+  left: calc(-50% - 50% * var(--skew));
+  pointer-events: none;
+  position: absolute;
+  top: -104%;
+  transform: skew(calc(150deg * var(--skew))) translateY(var(--progress, 0));
+  transition: transform 0.2s ease;
+  width: 100%;
+}
+
+.btn-17:after {
+  --progress: 0%;
+  left: calc(50% + 50% * var(--skew));
+  top: 102%;
+  z-index: -1;
+}
+
+.btn-17:hover:before {
+  --progress: 100%;
+}
+
+.btn-17:hover:after {
+  --progress: -102%;
+}
+
+  
+
+

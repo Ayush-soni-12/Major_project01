@@ -6,7 +6,7 @@ import { ScrollTrigger } from "https://cdn.skypack.dev/gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
- let wrapper = document.querySelector(".wrapper");
+ let images = document.querySelector(".images");
 
  let cursor = document.querySelector(".cursor")
  document.addEventListener("mousemove",(obj)=>{
@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
        ease: "power2.out",
     })
 })
-wrapper.addEventListener("mouseenter",(obj)=>{
+images.addEventListener("mouseenter",(obj)=>{
     cursor.innerHTML ="View more"
     gsap.to(cursor,{
         scale:2,
@@ -25,7 +25,7 @@ wrapper.addEventListener("mouseenter",(obj)=>{
 
     })
 })
-wrapper.addEventListener("mouseleave",(obj)=>{
+images.addEventListener("mouseleave",(obj)=>{
     gsap.to(cursor,{
         scale:1,
         
