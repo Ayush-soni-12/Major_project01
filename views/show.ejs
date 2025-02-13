@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show all data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
+
     <div class="cursor"></div>
-    <div class="navbar">
+    <!-- <div class="navbar">
         <h4>Home</h4>
         <div class="menu-toggle">☰</div>
         <div class="menu">
@@ -20,8 +23,38 @@
                 <h4>Airbnb your Home</h4>
             </a>
         </div>
+    </div> -->
+    <div class="page"> 
+    <div class="navbar">
+        <a href="/show">
+            <h4>Home</h4>
+            </a>
+        <i class="fa-solid fa-bars"></i>
     </div>
-    <h1 class="listing">Listings</h1>
+   <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show mt-5 col-6 offset-3" role="alert">
+            <%= success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>
+   <% }%>
+   <% if(error && error.length){%>
+    <div class="alert alert-danger alert-dismissible fade show mt-5 col-6 offset-3" role="alert">
+        <%=error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+<% }%>
+
+    <!-- <nav>
+        <i class="fa-solid fa-bars"></i>
+    </nav> -->
+    <div id="full">
+        <h4>Work</h4>
+        <a href="/show/new">
+            <h4>Airbnb your Home</h4>
+        </a>
+    </div>
+    <h1 class="listing">Listing
+    </h1>
     <div class="swiper-container">
         <div class="images swiper-wrapper">
             <% for(let data of datas) { %>
@@ -99,9 +132,11 @@
               </svg>
             </li>
         </div> 
+    </div>
    
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="/js/gsap.js"></script>
     <script type="module" src="/js/gsap1.js"></script>
     <script>

@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 
     <title>Create new</title>
 
+
 </head>
 <body>
     <div class="cursor"></div>
+    <div class="page">
     <div class="main">
-    <div class="navbar">
-        <h4>Home</h4>
-        <div class="menu-toggle">☰</div>
-        <div class="menu">
-            <a href="/show">
-                <h4>All listings</h4>
+      <div class="navbar">
+        <a href="/show">
+            <h4>Home</h4>
             </a>
-            <a href="/show/new">
-                <h4>Airbnb your Home</h4>
-            </a>
-        </div>
+        <i class="fa-solid fa-bars"></i>
     </div>
+    <div id="full">
+      <h4 style="font-weight:bold">Work</h4>
+      <a href="/show/new">
+          <h4 style="font-weight:bold">Airbnb your Home</h4>
+      </a>
+  </div>
+    <!-- </div> -->
     <form class="needs-validation" action="/show" method="post" novalidate>
         <h1 class="heading">Add your place</h1>
         
@@ -65,7 +69,7 @@
             </span>
           </button>
     </form>
-</div>
+<!-- </div> -->
     <!-- <footer>
         <div class="footer">
             <a href="https://www.instagram.com" target="_blank">
@@ -130,6 +134,8 @@
           </svg>
         </li>
     </div> 
+  </div>
+</div>
 
     <script type="module" src="/js/gsap.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

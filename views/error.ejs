@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show all data</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <style>
@@ -30,19 +30,18 @@
 
 <body>
      <div class="cursor"></div>
-    <div class="navbar">
-        <h4>Home</h4>
-        <div class="menu-toggle">☰</div>
-        <div class="menu">
-            <a href="/show">
-                <h4>All listings</h4>
-            </a>
-            <a href="/show/new">
-                <h4>Airbnb your Home</h4>
-            </a>
-        </div>
+     <div class="navbar">
+      <a href="/show">
+      <h4>Home</h4>
+      </a>
+      <i class="fa-solid fa-bars"></i>
+      </div>
+      <div id="full">
+        <h4 style="font-weight:bold">Work</h4>
+        <a href="/show/new">
+            <h4 style="font-weight:bold">Airbnb your Home</h4>
+        </a>
     </div>
-    
     <div class="Error">
         <h1><%= err.message%></h1>
         <h1>! Try again</h1>
@@ -61,7 +60,7 @@
             </a>
         </div>
     </footer> -->
-    <div class="wrapper">
+    <div style="position: fixed" class="wrapper">
         <li class="icon facebook">
           <span class="tooltip">Facebook</span>
           <svg

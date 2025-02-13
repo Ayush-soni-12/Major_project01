@@ -45,14 +45,14 @@ gsap.from(".Error", {
 });
 
 // Animate the navbar for a slide-in effect
-gsap.timeline().from(".navbar", {
+gsap.from(".navbar", {
     x: -100, // Start from 100px to the left
     opacity: 0, // Start with 0 opacity
     duration: 1, // Duration of the animation
     ease: "power2.out" // Easing for a smooth effect
 });
 
-gsap.timeline().from(".navbar h4", {
+gsap.from(".navbar h4", {
     y: 50,
     opacity: 0,
     delay: 1,
@@ -79,7 +79,7 @@ gsap.from(".listing-item", {
    
 });
 
-gsap.from(".footer a", {
+gsap.from(".wrapper a", {
     y: 50, // Start from 50px below
     opacity: 0, // Start with 0 opacity
     duration: 1, // Duration of the animation
@@ -130,5 +130,33 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 1,
         stagger: 0.3,
     });
+
+
     
-  
+ let navbar = document.querySelector(".navbar i");
+ let body = document.querySelector("body");
+
+let tl = gsap.timeline();
+
+tl.to("#full",{
+    x:-400,
+    duration:0.5,
+    
+})
+tl.from("#full h4",{
+    x:-30,
+    opacity:0,
+    duration:0.5,
+    stagger:0.3,
+});
+tl.pause();
+navbar.addEventListener("click",()=>{
+    console.log("hello");
+    tl.play();
+});
+document.addEventListener("dblclick",()=>{
+    console.log("bye");
+    tl.reverse();
+});
+
+

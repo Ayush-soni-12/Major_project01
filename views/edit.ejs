@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>Create new</title>
 </head>
 <body>
      <div class="cursor"></div>
+     <div class="page">
      <div class="main">
-    <div class="navbar">
+      <div class="navbar">
+        <a href="/show">
         <h4>Home</h4>
-        <div class="menu-toggle">☰</div>
-        <div class="menu">
-            <a href="/show">
-                <h4>All listings</h4>
-            </a>
-            <a href="/show/new">
-                <h4>Airbnb your Home</h4>
-            </a>
+        </a>
+        <i class="fa-solid fa-bars"></i>
         </div>
-    </div>
+        <div id="full">
+          <h4 style="font-weight:bold"> Work </h4>
+          <a href="/show/new">
+              <h4 style="font-weight:bold">Airbnb your Home</h4>
+          </a>
+      </div>
+    
     <form  class="needs-validation" action="/show/<%= data._id %>?_method=PUT" method="POST" novalidate>
       
         <h1 class="heading">Edit Your Listing</h1>
@@ -58,7 +61,7 @@
           </button>
     
     </form>
-</div>
+
     <!-- <footer>
         <div class="footer">
             <a href="https://www.instagram.com" target="_blank">
@@ -123,6 +126,8 @@
           </svg>
         </li>
     </div> 
+  </div>
+</div>
 
 
     <script type="module" src="/js/gsap.js"></script>

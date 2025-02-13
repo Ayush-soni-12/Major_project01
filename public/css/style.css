@@ -5,6 +5,13 @@ body {
     background-color: #f4f4f4;
     /* box-sizing: border-box; */
 }
+
+
+.page{
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
 .cursor {
     height: 20px;
     width: 20px;
@@ -29,7 +36,13 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 100;
+}
+
+.navbar a{
+  text-decoration: none;
+  text-decoration-line: none;
+  color: white;
 }
 
 .navbar h4 {
@@ -38,14 +51,18 @@ body {
     margin: 0 1rem;
     cursor: pointer;
 }
+.navbar i {
+  margin-right: 1.5em;
+  cursor: pointer;
+}
 
 .navbar .menu {
     display: flex;
     justify-content: space-evenly;
     padding-right: 15px;
-}
+} 
 
-.navbar .menu-toggle {
+ .navbar .menu-toggle {
     display: none;
 }
 
@@ -55,12 +72,49 @@ body {
     margin: 0 10px;
 }
 
+
+/* .................................. */
+
+#full {
+  height: 100vh;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.7);
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  right: -400px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1);
+}
+#full h4{
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  will-change: transform, color;
+}
+#full h4:hover {
+  color: #ff5a5f;
+  transform: scale(1.2) !important;
+}
+
+#full a{
+  text-decoration: none;
+  text-decoration-line: none;
+  color: black;
+
+}
 .listing {
     width: 100vw;
     height: 50px;
     text-align: center;
-     margin-top: -40px;  
-    z-index: 1000;
+     margin-top: -5px;  
+    z-index: 100;
     position: fixed;
 }
 
@@ -130,14 +184,21 @@ margin-top: 100px;
  justify-content: center;
  align-items: center; 
  background-color: #f4f4f4;
+ /* position: relative; */
 }
 
 form {
+    position: relative;
     padding: 20px;
     width: 800px;
+    /* z-index: 1000; */
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 6px 6px 12px #ffffff,
+     -6px 12px #c5c5c5;
+    font-weight: bold;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 .heading {
     margin-bottom: 20px;
@@ -153,13 +214,13 @@ label {
     background-color: black;
 } */
 
-form{
+/* form{
     border: none;
     border-radius: 15px;
     box-shadow: 6px 6px 12px #ffffff,
-    -6px -6px 12px #c5c5c5;
+     -6px 12px #c5c5c5;
     font-weight: bold;
-}
+} */
 
 form:focus {
     outline-color: white;
@@ -297,6 +358,10 @@ button :hover {
     font-family: "Poppins", sans-serif;
     justify-content: center;
     /* position: fixed; */
+  }
+  .wrapper a{
+    text-decoration: none;
+    color: blue;
   }
   
   .wrapper .icon {
