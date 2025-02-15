@@ -7,8 +7,13 @@ const ExpressError = require("./utils/ExpressError.js");
 const { wrap } = require("module");
 const listings = require("./routes/listing.js")
 const reviews = require("./routes/review.js")
+const user = require("./routes/user.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const localStrategy = require("passport-local");
+const User = require("./Modals/user.js");
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use(express.urlencoded({ extended: true }));
@@ -50,6 +55,13 @@ const sessionOption = {
 app.use(session(sessionOption));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash("success") || [];
     res.locals.error = req.flash("error") || [];
@@ -61,6 +73,7 @@ app.use((req, res, next) => {
 
 app.use("/show",listings);
 app.use("/show/:id/reviews",reviews);
+app.use("/",user);
 
 
 

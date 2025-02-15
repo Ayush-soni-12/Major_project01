@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/signup.css">
+    <title>Sign Up - Luxury Stays</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="page">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="/show">
+                <h4>LuxuryStays</h4>
+            </a>
+            <i class="fa-solid fa-bars"></i>
+        </nav>
+
+        <!-- Alerts -->
+        <% if(error && error.length){ %>
+            <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+                <%= error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <div id="full">
+          <h4 style="font-weight:bold">Work</h4>
+          <a href="/show/new">
+              <h4 style="font-weight:bold">Airbnb your Home</h4>
+          </a>
+      </div>
+        <!-- Main Content -->
+        <div class="auth-container">
+            <h1 class="auth-heading">Sign Up</h1>
+            
+            <form class="auth-form needs-validation" action="/signup" method="post" novalidate>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="input form-control" id="username" name="username" required>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please choose a username</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="input form-control" id="email" name="email" required>
+                    <div class="invalid-feedback">Please provide a valid email</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="input form-control" id="password" name="password" required>
+                    <div class="invalid-feedback">Please create a password</div>
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="btn-17">
+                        <span class="text-container">
+                            <span class="text">Create Account</span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="https://facebook.com" class="social-icon" target="_blank">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://linkedin.com" class="social-icon" target="_blank">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://instagram.com" class="social-icon" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/js/gsap.js"></script>
+    <script>
+        // Form Validation
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>

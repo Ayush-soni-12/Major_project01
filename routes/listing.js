@@ -20,7 +20,7 @@ const validatelisting = (req, res, next) => {
 
 router.get("/", wrapAsync(async (req, res) => {
     let datas = await Listing.find()
-    res.render("show.ejs", { datas });
+    res.render("index.ejs", { datas });
 })
 )
 

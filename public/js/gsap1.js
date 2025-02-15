@@ -6,7 +6,7 @@ import { ScrollTrigger } from "https://cdn.skypack.dev/gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
- let images = document.querySelector(".images");
+ let images = document.querySelector("swiper-slide");
 
  let cursor = document.querySelector(".cursor")
  document.addEventListener("mousemove",(obj)=>{
